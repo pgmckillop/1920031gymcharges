@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
 /*
@@ -45,14 +44,24 @@ namespace GymTracking
         {
             //-- Handler variable as string builder
             var sb = new StringBuilder();
+            var rateRunningTotal = 0;
 
+
+            //-- add Person data first
             sb.Append(mySummary.SessionPerson.PersonName).Append(" ").Append(mySummary.SessionPerson.Age).Append(" ").Append(mySummary.SessionPerson.Weight);
             sb.AppendLine();
-
+            
+            //-- Use Utility class method CalculateActivityRate and track as looping through each
             foreach(Activity activity in mySummary.Activities)
             {
-                sb.Append(activity.MachineName).Append(" Duration: ").AppendLine(activity.Duration.ToString());
+                sb.Append(activity.MachineName).Append(" Used: ").AppendLine(activity.Used.ToString());
+                //-- Rate total tracking
+                rateRunningTotal += (int)activity.Used;
             }
+            sb.AppendLine();
+            sb.AppendLine();
+
+            sb.Append("Total used: ").AppendLine(rateRunningTotal.ToString());
 
             //-- StringBuilder has to be converted to a string for return and use in the GUI
             return sb.ToString();

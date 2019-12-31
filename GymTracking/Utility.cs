@@ -41,7 +41,7 @@ namespace GymTracking
 
         #endregion
 
-        public static float CalculateActivity(string machine, string level, string duration)
+        public static float CalculateActivityRate(string machine, string level, string duration)
         {
             float valueTemp = 0;
 
