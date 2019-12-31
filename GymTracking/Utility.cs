@@ -41,11 +41,17 @@ namespace GymTracking
 
         #endregion
 
-        public static float CalculateActivity(string machine, string loading, string duration)
+        public static float CalculateActivity(string machine, string level, string duration)
         {
             float valueTemp = 0;
 
             return valueTemp;
+        }
+
+        //-- Calculate minutes as a proportion of an hour to work out relevant rate
+        public static float MinutesFractionOfHour(int minutes)
+        {
+            return minutes / 60;
         }
     }
 }
