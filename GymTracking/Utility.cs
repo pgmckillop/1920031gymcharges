@@ -9,6 +9,8 @@ using System.Text;
  * Purpose: handlers and app wide processors.
  */
 
+
+
 namespace GymTracking
 {
     public class Utility

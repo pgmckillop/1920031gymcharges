@@ -5,11 +5,117 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GymTracking"
       mc:Ignorable="d" 
-      d:DesignHeight="768" d:DesignWidth="1024"
+      d:DesignHeight="800" d:DesignWidth="450"
       Title="Person"
       ShowsNavigationUI="False">
 
-    <Grid>
+    <Grid
+        Margin="5">
+        <StackPanel
+            Background="Cornsilk">
+            <Grid>
+                
+                <!--Define layout structure of Rows and Columns-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <!--Page controls-->
+                
+                <!--Title Row Index 0-->
+                <StackPanel
+                    Grid.ColumnSpan="2"
+                    Margin="0 10 0 20">
+                    <TextBlock
+                        Style="{StaticResource PageHeaderStyle}">
+                        Enter your details
+                    </TextBlock>
+                    
+                </StackPanel>
+                
+                <!--Name Row Index 1-->
+                <StackPanel
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Margin="0 20">
+                    <TextBlock
+                        Style="{StaticResource SingleColumnLabelStyle}">
+                        Name
+                    </TextBlock>
+                    <TextBox
+                        Style="{StaticResource ValueTextBox}"
+                        x:Name="PersonNameTextBox"/>
+                </StackPanel>
+                
+                <!--Age Row Index 2-->
+                <StackPanel
+                    Grid.Row="2"
+                    Margin="0 20">
+                    <TextBlock
+                        Style="{StaticResource SingleColumnLabelStyle}">
+                        Age
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="0 20">
+                    <TextBox
+                        Style="{StaticResource NumbersTextBox}"
+                        x:Name="PersonAgeTextBox">
+                        
+                    </TextBox>
+                </StackPanel>
+                
+                <!--Weight Row Index 3-->
+                <StackPanel
+                    Grid.Row="3"
+                    Margin="0 20">
+                    <TextBlock
+                    Style="{StaticResource SingleColumnLabelStyle}">
+                    Weight
+                </TextBlock>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Margin="0 20">
+                    <TextBox
+                        Style="{StaticResource NumbersTextBox}"
+                        x:Name="PersonWeightTextBox"/>
+                </StackPanel>
+                
+                <!--Buttons Row Index 4-->
+
+                <StackPanel
+                    Grid.Row="4"
+                    Margin="0 30">
+                    <Button
+                        Style="{StaticResource FormButton}">
+                        Clear
+                    </Button>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Margin="0 30">
+                    <Button
+                        Style="{StaticResource FormButton}">
+                        Activities
+                    </Button>
+                </StackPanel>
+                
+            </Grid>
+        </StackPanel>
         
     </Grid>
 </Page>
