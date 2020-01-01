@@ -109,7 +109,9 @@
                     Grid.Column="1"
                     Margin="0 30">
                     <Button
-                        Style="{StaticResource FormButton}">
+                        Style="{StaticResource FormButton}"
+                        x:Name="ActivitiesButton"
+                        Click="ActivitiesButton_Click">
                         Activities
                     </Button>
                 </StackPanel>

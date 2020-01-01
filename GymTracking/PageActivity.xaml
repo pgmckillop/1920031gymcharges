@@ -30,12 +30,159 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 
+                <!--Title Row index 0-->
+                <StackPanel
+                    Grid.ColumnSpan="3">
+                    <TextBlock
+                        Style="{StaticResource PageHeaderStyle}">
+                        Enter Activities
+                    </TextBlock>
+                </StackPanel>
                 
                 
+                <!--Select Machine Row index 1-->
+                <StackPanel
+                    Grid.Row="1">
+                    <TextBlock
+                        Style="{StaticResource SingleColumnLabelStyle}">
+                        Machine
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2">
+                    <ComboBox
+                        Style="{StaticResource ComboBox}">
+                        
+                    </ComboBox>
+                </StackPanel>
+                
+                <!--Select Weighted Row index 2-->
+                <StackPanel
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2">
+                    <TextBlock
+                        Style="{StaticResource SingleColumnLabelStyle}">
+                        Weighted
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                    <CheckBox
+                        VerticalAlignment="Center"
+                        FontSize="36">
+                        
+                    </CheckBox>
+                </StackPanel>
                 
                 
+                <!--Level Row index 3-->
+                <StackPanel
+                    Grid.Row="3">
+                    <TextBlock
+                        Style="{StaticResource SingleColumnLabelStyle}">
+                        Level
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2">
+                    <ComboBox
+                        Style="{StaticResource ComboBox}">
+                        
+                    </ComboBox>
+                </StackPanel>
+                <!--Duration Row index 4-->
+                <StackPanel
+                    Grid.Row="4"
+                    Grid.ColumnSpan="2">
+                    <TextBlock
+                        Style="{StaticResource SingleColumnLabelStyle}">
+                        Duration
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="4"
+                    Grid.Column="2">
+                    <TextBox
+                        Style="{StaticResource NumbersTextBox}"/>
+
+
+                </StackPanel>
+
+
+                <!--Button add activity Row index 5-->
+                <StackPanel
+                    Grid.Row="5"
+                    Grid.ColumnSpan="3">
+                    <Button
+                        Style="{StaticResource FormButton}"
+                        Margin="0 30">
+                        Add Activity
+                    </Button>
+                </StackPanel>
                 
                 
+                <!--Count of activities Row index 6-->
+                <StackPanel
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2">
+                    <TextBlock
+                        Style="{StaticResource SingleColumnLabelStyle}">
+                        Count of Activities
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel
+                    Grid.Row="6"
+                    Grid.Column="2">
+                    <TextBlock
+                        Margin="0 10"
+                        Padding="10"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        FontFamily="TW Cen MT"
+                        FontSize="24"
+                        FontWeight="Bold"
+                        Foreground="Red">
+                        0
+                    </TextBlock>
+                </StackPanel>
+                
+                <!--Button show summary Row index 7-->
+                <StackPanel
+                    Grid.Row="7"
+                    Grid.ColumnSpan="3">
+                    <Grid
+                        Margin="0 40">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <Button
+                                Style="{StaticResource FormButton}"
+                                x:Name="BackButton"
+                                Click="BackButton_Click">
+                                Back
+                            </Button>
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Column="1">
+                            <Button
+                                Style="{StaticResource FormButton}"
+                                x:Name="PageSummaryButton"
+                                Click="PageSummaryButton_Click">
+                                Summary
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
                 
             </Grid>
         </StackPanel>

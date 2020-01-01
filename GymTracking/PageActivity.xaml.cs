@@ -22,5 +22,17 @@ namespace GymTracking
         {
             InitializeComponent();
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            var pagePerson = new PagePerson();
+            this.NavigationService.Navigate(pagePerson);
+        }
+
+        private void PageSummaryButton_Click(object sender, RoutedEventArgs e)
+        {
+            var pageSummary = new PageSummary();
+            this.NavigationService.Navigate(pageSummary);
+        }
     }
 }
