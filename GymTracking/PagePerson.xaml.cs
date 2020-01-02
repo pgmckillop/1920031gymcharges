@@ -34,6 +34,12 @@ namespace GymTracking
             PersonNameTextBox.Text = string.Empty;
             PersonAgeTextBox.Text = string.Empty;
             PersonWeightTextBox.Text = string.Empty;
+
+            //-- DEBUG Data. Remove on completion
+            PersonNameTextBox.Text = "Paul";
+            PersonAgeTextBox.Text = "67";
+            PersonWeightTextBox.Text = "170";
+
         }
 
         private void ActivitiesButton_Click(object sender, RoutedEventArgs e)

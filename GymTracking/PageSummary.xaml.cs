@@ -18,6 +18,7 @@ namespace GymTracking
     /// </summary>
     public partial class PageSummary : Page
     {
+
         public PageSummary()
         {
             InitializeComponent();
@@ -35,8 +36,8 @@ namespace GymTracking
         //-- Back to activity page
         private void SummaryPageBackButton_Click(object sender, RoutedEventArgs e)
         {
-            //var pageActivity = new PageActivity();
-            //this.NavigationService.Navigate(pageActivity);
+            var pageActivity = new PageActivity();
+            this.NavigationService.Navigate(pageActivity);
         }
 
         //-- Close the application down completely

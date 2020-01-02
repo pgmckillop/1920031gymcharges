@@ -35,6 +35,10 @@ namespace GymTracking
         internal bool isWeighted = false;
         internal int durationRecorded = 0;
         internal int usageRate = 0;
+        internal double usedRunningTotal = 0;
+        //-- structures to hold data for diplay showing activities recorded
+        internal List<Activity> recordedActivities = new List<Activity>();
+        internal List<string> activitiesToDisplay = new List<string>();
 
         //-- Object to handle person data after passed
         internal static Person person = new Person();
@@ -45,6 +49,9 @@ namespace GymTracking
         //-- Track the number of activities
         internal static int activitiesRecorded = 0;
 
+        //****************************************
+        //-- DEFAULT constructor
+        //****************************************
         //-- include the Person data passed from PagePerson as a parameter 
         //-- for the Constructor of the page
         public PageActivity(Person personPassed)
@@ -60,6 +67,21 @@ namespace GymTracking
             InclinedCheckBoxLabel.Visibility = Visibility.Hidden;
             InclinedCheckBox.Visibility = Visibility.Hidden;
 
+        }
+
+        //-- alternative constructor for when loaded without a person object available
+        public PageActivity()
+        {
+            InitializeComponent();
+
+            //-- Hide the inclined controls by defailt unless Treadmill selected
+            InclinedCheckBoxLabel.Visibility = Visibility.Hidden;
+            InclinedCheckBox.Visibility = Visibility.Hidden;
+
+            //-- set up list headers
+            var headers = "Machine" + "\t" + "Used" + "\t" + "used";
+            //-- add to list
+            activitiesToDisplay.Add(headers);
         }
 
         //-- Executes on page loaded
@@ -78,6 +100,7 @@ namespace GymTracking
 
         private void PageSummaryButton_Click(object sender, RoutedEventArgs e)
         {
+            
             var pageSummary = new PageSummary();
             this.NavigationService.Navigate(pageSummary);
         } 
@@ -149,8 +172,21 @@ namespace GymTracking
             {
                 //-- Add the current activity to the summary object
                 summary.Activities.Add(currentActivity);
+                recordedActivities.Add(currentActivity);
+                MessageBox.Show("Number of recorded activities: " + recordedActivities.Count.ToString());
                 //-- show that activity is added
                 CountOfActivitiesTextBlock.Text = activitiesRecorded.ToString();
+                //-- Reset text box
+                DurationTextBox.Text = "";
+
+                //-- Manage display string, first this activity
+                //-- to be added to listr for display
+                var listString = MakeSingleDisplayString(currentActivity);
+                activitiesToDisplay.Add(listString);
+
+                //-- refresh and display list of activities
+                //-- by making one string from the whole list
+                ActivityListTextBlock.Text = MakeWholeDisplayString(activitiesToDisplay);
             }
             else // Message that limit exceeded
             {
@@ -166,8 +202,8 @@ namespace GymTracking
                 isWeighted = InclinedCheckBox.IsChecked ?? false;
 
                 //-- Handler variables
-                float durationFractionOfHour = 0;
-                float usedInActivity = 0;
+                double durationFractionOfHour = 0;
+                double usedInActivity = 0;
                 float weightingFactor = 1.11F;
 
                 //-- Error check the duration. 
@@ -193,8 +229,16 @@ namespace GymTracking
                 }
 
 
+                /******************************
+                *  ACTION NEEDED
+                * **************************** 
+                *  
+                *  Calulation of durationFractionOfHour not returning value
+                *  
+                ******************************/
+
                 //-- convert minutes to a fraction of an hour.
-                durationFractionOfHour = Utility.MinutesFractionOfHour(durationRecorded);
+                durationFractionOfHour = FractionOfHour(durationRecorded);
 
                 //-- Get the Rate for combination of Machine and Level
                 usageRate = MachineDataDb.GetRate(selectedMachine, selectedLevel);
@@ -220,11 +264,65 @@ namespace GymTracking
                     Used = usedInActivity
                 };
 
+                StringBuilder sb = new StringBuilder();
+
+                sb.Append("Person name: ").AppendLine(summary.SessionPerson.PersonName);
+                sb.Append("Person age: ").AppendLine(summary.SessionPerson.Age.ToString());
+                sb.Append("Person weight: ").AppendLine(summary.SessionPerson.Weight.ToString());
+                sb.AppendLine();
+                sb.AppendLine(selectedMachine);
+                sb.AppendLine(isWeighted.ToString());
+                sb.AppendLine(selectedLevel);
+                sb.AppendLine(durationRecorded.ToString());
+                sb.Append("Usage rate: ").AppendLine(usageRate.ToString());
+                sb.Append("Duration fraction of hour: ").AppendLine(durationFractionOfHour.ToString());
+                sb.Append("Used ").AppendLine(usedInActivity.ToString());
+
+                MessageBox.Show(sb.ToString());
+
                 //-- Return the Activity object constructed from the values
                 //-- Harvested from the form.
                 return tempActivity;
             }
         }
+
+        #region Display string methods
+        //-- string with a single activity
+        private string MakeSingleDisplayString(Activity activity)
+        {
+            var tempString = string.Empty;
+            var sb = new StringBuilder();
+            var usedString = Convert.ToInt32(activity.Used).ToString();
+
+            if(activity.MachineName.Length >= 12)
+            {
+                sb.Append(activity.MachineName).Append("\t").Append(activity.Duration.ToString()).Append("\t").AppendLine(usedString);
+            }
+            else //-- Need an extra tab for alignment
+            {
+                sb.Append(activity.MachineName).Append("\t").Append("\t").Append(activity.Duration.ToString()).Append("\t").AppendLine(usedString);
+            }
+
+
+            return sb.ToString();
+        }
+
+        //-- Whole list of activities as strings in single string
+        private string MakeWholeDisplayString(List<string> displayList)
+        {
+            var sb = new StringBuilder();
+            sb.Append("Machine").Append("\t").Append("\t").Append("Minutes").Append("\t").AppendLine("Used");
+            
+            foreach (var line in displayList)
+            {
+                sb.Append(line);
+            }
+
+            return sb.ToString();
+        } 
+        #endregion
+
+
 
         #region Data methods for population of Combos
         /// <summary>
@@ -243,6 +341,14 @@ namespace GymTracking
         private List<string> Levels()
         {
             return Lists.Levels();
+        }
+
+        private double FractionOfHour(int minutes)
+        {
+            //-- in order to return double
+            //-- the int minutes must be cast to double
+            //-- before division
+            return (double)minutes / 60;
         }
 
         #endregion

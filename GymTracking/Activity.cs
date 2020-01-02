@@ -19,6 +19,6 @@ namespace GymTracking
         public bool Weighted { get; set; }
         public int Duration { get; set; }
         //-- Hold corrected rate
-        public float Used { get; set; }
+        public double Used { get; set; }
     }
 }
