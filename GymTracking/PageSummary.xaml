@@ -10,6 +10,69 @@
 
     <Grid
         Margin="5">
+        <StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="11*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+            </Grid>
+            
+            <!--Title Row index 0-->
+            <StackPanel>
+                <TextBlock
+                    Style="{StaticResource PageHeaderStyle}">
+                    Summary
+                </TextBlock>
+            </StackPanel>
+            
+            
+            <!--Summary Text Block Row index 1-->
+            <!--The text block is populated at runtime-->
+            <StackPanel
+                Grid.Row="1">
+                <TextBlock
+                    VerticalAlignment="Stretch"
+                    x:Name="SummaryTextBlock"/>
+            </StackPanel>
+            
+            
+            <!--Buttons Row index 2-->
+            <StackPanel
+                Grid.Row="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+                        <Button
+                            Style="{StaticResource FormButton}"
+                            x:Name="SummaryPageBackButton"
+                            Click="SummaryPageBackButton_Click">
+                            Back
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel
+                        Grid.Column="1">
+                        <Button
+                            Style="{StaticResource FormButton}"
+                            x:Name="SummaryPageExitButton"
+                            Click="SummaryPageExitButton_Click">
+                            Exit
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
         
     </Grid>
 </Page>

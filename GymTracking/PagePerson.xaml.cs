@@ -11,6 +11,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+/*
+ * Title:   PageActivity CS
+ * Author:  Paul McKillop
+ * Date:    01 January 2020
+ * Purpose: Code behind for functionality
+ */
+
 namespace GymTracking
 {
     /// <summary>
