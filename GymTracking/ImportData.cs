@@ -16,9 +16,10 @@ namespace GymTracking
 {
     public class ImportData
     {
-        public static DataTable GetTextFileData(string strFilePath)
+        public static DataTable GetTextFileData(string path)
         {
-            StreamReader sr = new StreamReader(strFilePath);
+
+            StreamReader sr = new StreamReader(path);
             // Read the first line only for column headers
             // and use these to create the DataTable columns
             string[] headers = sr.ReadLine().Split(',');

@@ -23,10 +23,24 @@ namespace GymTracking
     /// <summary>
     /// Interaction logic for PageActivity.xaml
     /// </summary>
+    /// 
+
+   
     public partial class PageActivity : Page
-    {
+    { 
+        
+        //-- handler variables
+        internal static string selectedMachine = "";
+        internal static string selectedLevel = "";
+
         //-- Object to handle person data after passed
-        Person person = new Person();
+        internal static Person person = new Person();
+
+        //- Object to hold the Activity data
+        internal static Summary summary = new Summary();
+
+        //-- Track the number of activities
+        internal static int activitiesRecorded = 0;
 
         //-- include the Person data passed from PagePerson as a parameter 
         //-- for the Constructor of the page
@@ -35,10 +49,12 @@ namespace GymTracking
             InitializeComponent();
             //-- assign the passed data to the module wide variable
             person = personPassed;
+
+            //-- Hide the inclined controls by defailt unless Treadmill selected
+            InclinedCheckBoxLabel.Visibility = Visibility.Hidden;
+            InclinedCheckBox.Visibility = Visibility.Hidden;
+
         }
-
-
-
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
@@ -57,5 +73,79 @@ namespace GymTracking
             //-- confirm the person data has been received
             MessageBox.Show("Person data received for " + person.PersonName);
         }
+
+        #region Machines Combo handler methods
+        //-- Load the data when the control is loaded to the form
+        private void MachinesCombo_Loaded(object sender, RoutedEventArgs e)
+        {
+            var combo = sender as ComboBox;
+            combo.ItemsSource = Machines();
+            combo.SelectedIndex = 0;
+        }
+
+        //-- Update the module wide variable when item selected
+        private void MachinesCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedMachineCombo = sender as ComboBox;
+            selectedMachine = selectedMachineCombo.SelectedItem as string;
+
+            //-- Control the visibility of the checkbox control label and checkbox
+            if (selectedMachine == "Treadmill")
+            {
+                InclinedCheckBoxLabel.Visibility = Visibility.Visible;
+                InclinedCheckBox.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                InclinedCheckBoxLabel.Visibility = Visibility.Hidden;
+                InclinedCheckBox.Visibility = Visibility.Hidden;
+            }
+
+        }
+        #endregion
+
+        #region Levels Combo handler methods
+        private void LevelsCombo_Loaded(object sender, RoutedEventArgs e)
+        {
+            var combo = sender as ComboBox;
+            combo.ItemsSource = Levels();
+            combo.SelectedIndex = 0;
+        }
+
+        private void LevelsCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedLevelCombo = sender as ComboBox;
+            selectedLevel = selectedLevelCombo.SelectedItem as string;
+
+            ////-- DEBUG
+            //MessageBox.Show("Selected level is " + selectedLevel);
+        } 
+        #endregion
+
+
+
+        #region Data methods for population of Combos
+        /// <summary>
+        /// Get the list of machines from the text file
+        /// </summary>
+        /// <returns></returns>
+        private List<string> Machines()
+        {
+            return Lists.Machines();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private List<string> Levels()
+        {
+            return Lists.Levels();
+        }
+
+
+
+        #endregion
+
     }
 }

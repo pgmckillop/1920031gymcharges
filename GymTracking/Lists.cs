@@ -15,6 +15,8 @@ namespace GymTracking
     public class Lists
     {
 
+        internal static string dataPath = @"C:\gymdata.txt";
+        
         /// <summary>
         /// Get list of machines from the text file database
         /// </summary>
@@ -23,7 +25,7 @@ namespace GymTracking
         {
             
             //-- Handler variables
-            var path = @"c:\gymcharges";
+            var path = dataPath;
             var tempList = new List<string>();
             var dt = new DataTable();
 
@@ -67,7 +69,7 @@ namespace GymTracking
         public static List<string> Levels()
         {
             //-- for structure and purpose comments refwer to procedure Machines() above
-            var path = @"c:\gymcharges";
+            var path = dataPath;
             var tempList = new List<string>();
             var dt = new DataTable();
 

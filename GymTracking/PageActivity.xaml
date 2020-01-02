@@ -54,7 +54,11 @@
                     Grid.Column="1"
                     Grid.ColumnSpan="2">
                     <ComboBox
-                        Style="{StaticResource ComboBox}">
+                        Style="{StaticResource ComboBox}"
+                        x:Name="MachinesCombo"
+                        Loaded="MachinesCombo_Loaded"
+                        SelectionChanged="MachinesCombo_SelectionChanged"
+                        >
                         
                     </ComboBox>
                 </StackPanel>
@@ -64,7 +68,8 @@
                     Grid.Row="2"
                     Grid.ColumnSpan="2">
                     <TextBlock
-                        Style="{StaticResource SingleColumnLabelStyle}">
+                        Style="{StaticResource SingleColumnLabelStyle}"
+                        x:Name="InclinedCheckBoxLabel">
                         Weighted
                     </TextBlock>
                 </StackPanel>
@@ -75,7 +80,8 @@
                     HorizontalAlignment="Center">
                     <CheckBox
                         VerticalAlignment="Center"
-                        FontSize="36">
+                        FontSize="36"
+                        x:Name="InclinedCheckBox">
                         
                     </CheckBox>
                 </StackPanel>
@@ -94,7 +100,10 @@
                     Grid.Column="1"
                     Grid.ColumnSpan="2">
                     <ComboBox
-                        Style="{StaticResource ComboBox}">
+                        Style="{StaticResource ComboBox}"
+                        x:Name="LevelsCombo"
+                        Loaded="LevelsCombo_Loaded"
+                        SelectionChanged="LevelsCombo_SelectionChanged">
                         
                     </ComboBox>
                 </StackPanel>
