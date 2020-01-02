@@ -120,7 +120,8 @@
                     Grid.Row="4"
                     Grid.Column="2">
                     <TextBox
-                        Style="{StaticResource NumbersTextBox}"/>
+                        Style="{StaticResource NumbersTextBox}"
+                        x:Name="DurationTextBox"/>
 
 
                 </StackPanel>
@@ -132,7 +133,9 @@
                     Grid.ColumnSpan="3">
                     <Button
                         Style="{StaticResource FormButton}"
-                        Margin="0 30">
+                        Margin="0 30"
+                        x:Name="AddActivityButton"
+                        Click="AddActivityButton_Click">
                         Add Activity
                     </Button>
                 </StackPanel>
@@ -159,7 +162,8 @@
                         FontFamily="TW Cen MT"
                         FontSize="24"
                         FontWeight="Bold"
-                        Foreground="Red">
+                        Foreground="Red"
+                        x:Name="CountOfActivitiesTextBlock">
                         0
                     </TextBlock>
                 </StackPanel>

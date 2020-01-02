@@ -21,7 +21,7 @@ namespace GymTracking
         public static DataTable GetMachineData()
         {
             //-- handler variables
-            var path = @"C:\gymdata";
+            var path = Lists.dataPath;
             var dt = new DataTable();
 
             //--- Use try .. catch to trap errors
@@ -68,7 +68,7 @@ namespace GymTracking
             return tempList;
         }
 
-        public static float GetRate(string machineName, string level)
+        public static int GetRate(string machineName, string level)
         {
             float tempRate = 0;
 
@@ -82,7 +82,7 @@ namespace GymTracking
                 }
             }
 
-            return tempRate;
+            return Convert.ToInt32(tempRate);
         }
 
     }
