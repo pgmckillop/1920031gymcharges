@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:GymTracking"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="450"
-      Title="Activity">
+      Title="Activity"
+      Loaded="Page_Loaded">
 
     <Grid
         Margin="5">

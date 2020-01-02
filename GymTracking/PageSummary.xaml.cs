@@ -23,12 +23,20 @@ namespace GymTracking
             InitializeComponent();
         }
 
-        
+
+ /******************************
+ *  ACTION NEEDED
+ * **************************** 
+ *  Re-asign person data on back button
+ *  when there is an object to work with
+ *  After PageActivity complete
+ ******************************/
+
         //-- Back to activity page
         private void SummaryPageBackButton_Click(object sender, RoutedEventArgs e)
         {
-            var pageActivity = new PageActivity();
-            this.NavigationService.Navigate(pageActivity);
+            //var pageActivity = new PageActivity();
+            //this.NavigationService.Navigate(pageActivity);
         }
 
         //-- Close the application down completely

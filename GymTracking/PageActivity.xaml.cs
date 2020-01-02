@@ -25,10 +25,20 @@ namespace GymTracking
     /// </summary>
     public partial class PageActivity : Page
     {
-        public PageActivity()
+        //-- Object to handle person data after passed
+        Person person = new Person();
+
+        //-- include the Person data passed from PagePerson as a parameter 
+        //-- for the Constructor of the page
+        public PageActivity(Person personPassed)
         {
             InitializeComponent();
+            //-- assign the passed data to the module wide variable
+            person = personPassed;
         }
+
+
+
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
@@ -40,6 +50,12 @@ namespace GymTracking
         {
             var pageSummary = new PageSummary();
             this.NavigationService.Navigate(pageSummary);
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            //-- confirm the person data has been received
+            MessageBox.Show("Person data received for " + person.PersonName);
         }
     }
 }

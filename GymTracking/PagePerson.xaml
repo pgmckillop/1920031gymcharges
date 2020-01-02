@@ -100,7 +100,9 @@
                     Grid.Row="4"
                     Margin="0 30">
                     <Button
-                        Style="{StaticResource FormButton}">
+                        Style="{StaticResource FormButton}"
+                        x:Name="PagePersonClearButton"
+                        Click="PagePersonClearButton_Click">
                         Clear
                     </Button>
                 </StackPanel>
