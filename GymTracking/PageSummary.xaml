@@ -37,9 +37,79 @@
             <!--Summary Text Block Row index 1-->
             <!--The text block is populated at runtime-->
             <StackPanel
-                Grid.Row="1">
+                Grid.Row="1"
+                Margin="10"
+                Height="Auto"
+                Width="Auto"
+                Background="LightGray">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <!-- Title row index 0 -->
+                    <StackPanel>
+                        <TextBlock
+                            Style="{StaticResource SummaryDataTextBlock}">
+                            Activity Data for:
+                        </TextBlock>
+                    </StackPanel>
+                    
+                    <!-- Person name row index 1-->
+                    <StackPanel
+                        Grid.Row="1">
+                        <TextBlock
+                            Style="{StaticResource SummaryDataTextBlock}"
+                            x:Name="PersonTextBlock"/>
+                    </StackPanel>
+                    
+                    <!-- Number of activities row index 2 -->
+                    <StackPanel
+                        Grid.Row="2">
+                        <TextBlock
+                            Style="{StaticResource SummaryDataTextBlock}"
+                            x:Name="NumberActitiesTextBlock"/>
+                    </StackPanel>
+                    
+                    <!-- Minutes of execise row index 3 -->
+                    <StackPanel
+                        Grid.Row="3">
+                        <TextBlock
+                            Style="{StaticResource SummaryDataTextBlock}"
+                            Margin="10 10 10 50"
+                            x:Name="MinutesExerciseTextBlock"/>
+                    </StackPanel>
+                    
+                    
+                    <!-- Total used title row index 4 -->
+                    <StackPanel
+                        Grid.Row="4">
+                        <TextBlock
+                            Style="{StaticResource PageHeaderStyle}">
+                            Total Used
+                        </TextBlock>
+                    </StackPanel>
+                    
+                    
+                    <!-- Total used number row index 5 -->
+                </Grid>
+                <StackPanel
+                    Grid.Row="5">
+                    <TextBlock
+                        Style="{StaticResource PageHeaderStyle}"
+                        FontSize="60"
+                        Foreground="Red"
+                        x:Name="TotalUsedTextBlock"/>
+                </StackPanel>
+                
                 <TextBlock
                     VerticalAlignment="Stretch"
+                    Padding="10"
                     FontSize="16"
                     x:Name="SummaryTextBlock"/>
             </StackPanel>
@@ -47,7 +117,8 @@
             
             <!--Buttons Row index 2-->
             <StackPanel
-                Grid.Row="2">
+                Grid.Row="2"
+                Height="Auto">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>

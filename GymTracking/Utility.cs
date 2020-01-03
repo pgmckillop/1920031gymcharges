@@ -55,5 +55,18 @@ namespace GymTracking
         {
             return (double)minutes / 60;
         }
+
+        //-- present total exercise time in hours and minutes
+        public static string HoursAndMinutes(int minutes)
+        {
+            var tempString = string.Empty;
+
+            int minutesRemainder = minutes % 60;
+            int hours = (int)minutes / 60;
+
+            tempString = hours.ToString() + " Hours and " + minutesRemainder + " minutes";
+
+            return tempString;
+        }
     }
 }

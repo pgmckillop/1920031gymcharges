@@ -36,6 +36,7 @@ namespace GymTracking
         internal int durationRecorded = 0;
         internal int usageRate = 0;
         internal double usedRunningTotal = 0;
+        internal int totalMinutesOfExercise = 0;
         //-- structures to hold data for diplay showing activities recorded
         internal List<Activity> recordedActivities = new List<Activity>();
         internal List<string> activitiesToDisplay = new List<string>();
@@ -100,8 +101,15 @@ namespace GymTracking
 
         private void PageSummaryButton_Click(object sender, RoutedEventArgs e)
         {
+            //-- finalise the summary object
+            summary.NumberOfActivities = recordedActivities.Count;
+            summary.MinutesOfExercise = totalMinutesOfExercise;
+            summary.TotalUsed = (int)usedRunningTotal;
+
             
-            var pageSummary = new PageSummary();
+            //-- Use navigation service to go to page
+            //-- Pass the summary object
+            var pageSummary = new PageSummary(summary);
             this.NavigationService.Navigate(pageSummary);
         } 
         #endregion
@@ -167,11 +175,14 @@ namespace GymTracking
             //-- increase the count of activities
             activitiesRecorded++;
 
+            //-- Increase the totalMinutes
+            totalMinutesOfExercise += currentActivity.Duration;
+
             //-- Check that no more than 6 activities recorded
             if (activitiesRecorded <= 6)
             {
                 //-- Add the current activity to the summary object
-                summary.Activities.Add(currentActivity);
+                //summary.Activities.Add(currentActivity);
                 recordedActivities.Add(currentActivity);
                 MessageBox.Show("Number of recorded activities: " + recordedActivities.Count.ToString());
                 //-- show that activity is added
@@ -228,15 +239,6 @@ namespace GymTracking
                     MessageBox.Show("You must enter a duration for the activity");
                 }
 
-
-                /******************************
-                *  ACTION NEEDED
-                * **************************** 
-                *  
-                *  Calulation of durationFractionOfHour not returning value
-                *  
-                ******************************/
-
                 //-- convert minutes to a fraction of an hour.
                 durationFractionOfHour = FractionOfHour(durationRecorded);
 
@@ -253,6 +255,8 @@ namespace GymTracking
                 {
                     usedInActivity = usageRate * durationFractionOfHour;
                 }
+
+                usedRunningTotal += usedInActivity;
 
                 //-- Assign values to the object to be returned
                 Activity tempActivity = new Activity
@@ -274,9 +278,9 @@ namespace GymTracking
                 sb.AppendLine(isWeighted.ToString());
                 sb.AppendLine(selectedLevel);
                 sb.AppendLine(durationRecorded.ToString());
-                sb.Append("Usage rate: ").AppendLine(usageRate.ToString());
-                sb.Append("Duration fraction of hour: ").AppendLine(durationFractionOfHour.ToString());
-                sb.Append("Used ").AppendLine(usedInActivity.ToString());
+                sb.Append("Usage rate: ").AppendLine(usageRate.ToString("#.##"));
+                sb.Append("Duration fraction of hour: ").AppendLine(durationFractionOfHour.ToString("#.##"));
+                sb.Append("Used ").AppendLine(usedInActivity.ToString("#.##"));
 
                 MessageBox.Show(sb.ToString());
 

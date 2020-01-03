@@ -18,22 +18,60 @@ namespace GymTracking
     /// </summary>
     public partial class PageSummary : Page
     {
-
-        public PageSummary()
+        //-- Handler object
+        Summary summary = new Summary();
+        public PageSummary(Summary summaryPassed)
         {
             InitializeComponent();
+
+            //-- Assign the data to the object
+            summary = summaryPassed;
+
+            string person = summary.SessionPerson.PersonName;
+            string numberOfActivities = summary.NumberOfActivities.ToString();
+            string minutesOfExercise = summary.MinutesOfExercise.ToString();
+            string totalUsed = summary.TotalUsed.ToString();
+            
+
+            //-- Populate the information controls
+
+            PersonTextBlock.Text = person;
+
+            NumberActitiesTextBlock.Text = numberOfActivities;
+
+            MinutesExerciseTextBlock.Text = minutesOfExercise;
+
+            TotalUsedTextBlock.Text = totalUsed;
+
+
+
+
+            //-- Display the summary
+            //SummaryTextBlock.Text = CreateSummaryText(summary);
         }
 
+        ////-- Display text preparation
+        //private static string CreateSummaryText(Summary mySummary)
+        //{
+        //    var tempString = string.Empty;
+        //    var sb = new StringBuilder();
 
- /******************************
- *  ACTION NEEDED
- * **************************** 
- *  Re-asign person data on back button
- *  when there is an object to work with
- *  After PageActivity complete
- ******************************/
+        //    var hoursAndMinutes = Utility.HoursAndMinutes(mySummary.MinutesOfExercise);
 
-        //-- Back to activity page
+        //    sb.AppendLine("Session Summary for:");
+        //    sb.AppendLine();
+        //    sb.AppendLine(mySummary.SessionPerson.PersonName);
+        //    sb.Append("Number Activities: ").Append("\t").AppendLine(mySummary.NumberOfActivities.ToString());
+        //    sb.Append("Minutes Exercise: ").Append("\t").AppendLine(mySummary.MinutesOfExercise.ToString());
+        //    sb.Append("Total in Hrs and Min: ").Append("\t").AppendLine(hoursAndMinutes);
+        //    sb.AppendLine();
+        //    sb.AppendLine(); 
+        //    sb.AppendLine();
+        //    sb.Append("TOTAL USED").Append("\t").AppendLine(mySummary.TotalUsed.ToString());
+        //    return tempString;
+        //}
+            
+            //-- Back to activity page
         private void SummaryPageBackButton_Click(object sender, RoutedEventArgs e)
         {
             var pageActivity = new PageActivity();
