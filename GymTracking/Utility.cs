@@ -51,9 +51,9 @@ namespace GymTracking
         }
 
         //-- Calculate minutes as a proportion of an hour to work out relevant rate
-        public static float MinutesFractionOfHour(int minutes)
+        public static double MinutesFractionOfHour(int minutes)
         {
-            return minutes / 60;
+            return (double)minutes / 60;
         }
     }
 }

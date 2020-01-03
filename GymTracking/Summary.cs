@@ -24,48 +24,45 @@ namespace GymTracking
             set { person = value; }
         }
 
-        //-- all the activities recorded for the session
-        //-- The activities and their contyent have to be validated before they get here
-        private List<Activity> activities = new List<Activity>();
+        private int numberOfActivities;
 
-        public List<Activity> Activities
+        //-- number of activities recorded
+        public int NumberOfActivities
         {
-            get { return activities = new List<Activity>(); }
-            set { activities = value; }
+            get { return numberOfActivities; }
+            set { numberOfActivities = value; }
         }
 
-        ///// <summary>
-        ///// Create all the data as a string that can  be  insterted
-        ///// into a TextBlock in the GUI
-        ///// </summary>
-        ///// <param name="mySummary"></param>
-        ///// <returns>string</returns>
-        //public static string PresentSummary(Summary mySummary)
-        //{
-        //    //-- Handler variable as string builder
-        //    var sb = new StringBuilder();
-        //    var rateRunningTotal = 0;
+        private int minutesOfExercise;
 
+        //-- Total of all time exercise as minutes
+        public int MinutesOfExercise
+        {
+            get { return minutesOfExercise; }
+            set { minutesOfExercise = value; }
+        }
 
-        //    //-- add Person data first
-        //    sb.Append(mySummary.SessionPerson.PersonName).Append(" ").Append(mySummary.SessionPerson.Age).Append(" ").Append(mySummary.SessionPerson.Weight);
-        //    sb.AppendLine();
-            
-        //    //-- Use Utility class method CalculateActivityRate and track as looping through each
-        //    foreach(Activity activity in mySummary.Activities)
-        //    {
-        //        sb.Append(activity.MachineName).Append(" Used: ").AppendLine(activity.Used.ToString());
-        //        //-- Rate total tracking
-        //        rateRunningTotal += (int)activity.Used;
-        //    }
-        //    sb.AppendLine();
-        //    sb.AppendLine();
+        private int totalUsed;
 
-        //    sb.Append("Total used: ").AppendLine(rateRunningTotal.ToString());
+        //-- Result of all the exercise
+        public int TotalUsed
+        {
+            get { return totalUsed; }
+            set { totalUsed = value; }
+        }
 
-        //    //-- StringBuilder has to be converted to a string for return and use in the GUI
-        //    return sb.ToString();
-        //}
+        //-- present total exercise time in hours and minutes
+        private static string HoursAndMinutes(int minutes)
+        {
+            var tempString = string.Empty;
+
+            int minutesRemainder = minutes % 60;
+            int hours = (int)minutes / 60;
+
+            tempString = hours.ToString() + " Hours and " + minutesRemainder + " minutes";
+
+            return tempString;
+        }
 
 
     }
